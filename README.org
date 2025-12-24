@@ -1,0 +1,188 @@
+#+title: 5 Python Mini Projects
+#+author: Felipe Canteiro
+
+Esse são alguns exercícios desenvolvidos no vídeo [[https://www.youtube.com/watch?v=DLn3jOsNRVE][5 Python Mini Projects]] do canal [[https://www.youtube.com/@TechWithTim][Tech With Tim]]. +Não lembro quando fiz o tutorial, estou colocando aqui muito posteriormente+
+
+* [[./quiz.py][Quiz]]
+Exercício bastante básico, aborda _entrada/saída_, _tratamento da entrada_ do usuário, _condicionais simples_
+#+begin_src python :tangle ./quiz.py
+
+print("Welcome to my computer quiz")
+
+playing = input("Do you want to play?\n")
+print(playing)
+
+if playing.lower() != "yes":
+    quit()
+
+print("Okay! Let's play")
+score = 0
+
+answer = input("What dows CPU stand for? ")
+if answer.lower() == "central processing unit":
+    print("Correct!")
+    score += 1
+else:
+    print("Incorrect!")
+
+answer = input("What dows GPU stand for? ")
+if answer.lower() == "graphics processing unit":
+    print("Correct!")
+    score += 1
+else:
+    print("Incorrect!")
+
+answer = input("What dows RAM stand for? ")
+if answer.lower() == "random access memory":
+    print("Correct!")
+    score += 1
+else:
+    print("Incorrect!")
+
+answer = input("What dows PSU stand for? ")
+if answer.lower() == "power supply":
+    print("Correct!")
+    score += 1
+else:
+    print("Incorrect!")
+
+print(f"You got {score} questions correct! ({score/4 * 100} %)")
+
+#+end_src
+
+* [[./number_guesser.py][Adivinhador de números]]
+Introduz =while=, _bibliotecas_, _condições aninhadas_ e _compostas_
+
+#+begin_src python :tangle ./number_guesser.py
+
+from random import randint
+
+upper_limit = input("What is the upper limit? ")
+
+if upper_limit.isdigit():
+    upper_limit = int(upper_limit)
+
+    if upper_limit <= 0:
+        print("Enter a number larger than 0")
+        quit()
+else:
+    print("Enter a number")
+    quit()
+
+random_number = randint(0, upper_limit)
+number_guesses = 0
+
+while True:
+    guess = input(f"Guess a number between 0 and {upper_limit} (including {upper_limit}): ")
+    number_guesses += 1
+
+    if guess.isdigit():
+        guess = int(guess)
+    else:
+        print("Enter a number")
+        continue
+
+    if guess > random_number:
+        print("You guessed too high")
+    elif guess < random_number:
+        print("You guessed too low")
+    else:
+        print("You won!")
+        break
+
+print(f"You got it in {number_guesses} guesses")
+
+#+end_src
+
+* [[./rock_paper_scissors.py][Pedra, papel ou tesoura]]
+Introduz _operadores lógicos_ e _listas_ 
+
+#+begin_src python :tangle ./rock_paper_scissors.py
+
+from random import randint
+
+user_score = 0
+computer_score = 0
+
+options = ["rock", "paper", "scissors"]
+
+while True:
+    user_input = input("Type Rock/Paper/Scissors or Q to quit\n").lower()
+
+    if user_input == 'q':
+        break
+
+    if user_input not in options:
+        print("That is not an option!")
+        continue
+
+    random_index = randint(0, 2)
+    computer_choice = options[random_index]
+
+    print(f"Computer picked {computer_choice}")
+
+    if user_input == "rock" and computer_choice == "scissors":
+        print("You won!")
+        user_score += 1
+    elif user_input == "paper" and computer_choice == "rock":
+        print("You won!")
+        user_score += 1
+    elif user_input == "scissors" and computer_choice == "paper":
+        print("You won!")
+        user_score += 1
+    elif user_input == computer_choice:
+        continue
+    else:
+        print(user_input == computer_choice)
+        print("You lost!")
+        computer_score += 1
+
+print(f"Final score: You {user_score} x {computer_score} Computer")
+
+#+end_src
+
+* [[file:choose_your_own_adventure.py][Escolha sua aventura]]
+Espécie de RPG, não acho que introduza nada de novo
+
+#+begin_src python :tangle ./choose_your_own_adventure.py
+
+name = input("What's your name?\n").capitalize()
+print(f"Welcome to this journey, {name}")
+
+answer = input("You are on a dirty road, it has come to an end and you can go [left] or [right]. Which way wuold you go?").lower()
+
+if answer == "left":
+    answer = input("You come to a river. You can [walk] around it or [swim] accross").lower()
+
+    if answer == "swim":
+        print("You swam accross the river and were eaten by an alligator")
+    elif answer == "walk":
+        print("You walked for many miles, ran out of water and died")
+    else:
+        print("Not a valid option. You lose.")
+
+elif answer == "right":
+    answer = input("You come to a bridge. It looks wobbly. You can [cross] it or head [back]").lower()
+
+    if answer == "back":
+        answer = input("You cresso the bridge and meet a stranger. Do you talk to them? ([yes]/[no])").lower()
+
+        if answer == "yes":
+            print("You talk to the stranger and they give you gold. You win")
+        elif answer == "no":
+            print("You ignore the stranger and they are offended and kill you")
+        else:
+            print("Not a valid option. You lose.")
+
+    else:
+        print("Not a valid option. You lose.")
+
+else:
+    print("Not a valid option. You lose.")
+
+print(f"Thank you for playing, {name}")
+
+#+end_src
+
+* Gerenciador de Senhas
+Introduzia a criação de funções, mas não funciona :/
