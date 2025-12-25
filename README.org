@@ -3,6 +3,13 @@
 
 Esse são alguns exercícios desenvolvidos no vídeo [[https://www.youtube.com/watch?v=DLn3jOsNRVE][5 Python Mini Projects]] do canal [[https://www.youtube.com/@TechWithTim][Tech With Tim]]. +Não lembro quando fiz o tutorial, estou colocando aqui muito posteriormente+
 
+* Exercícios :toc:
+- [[#quiz][Quiz]]
+- [[#adivinhador-de-números][Adivinhador de números]]
+- [[#pedra-papel-ou-tesoura][Pedra, papel ou tesoura]]
+- [[#escolha-sua-aventura][Escolha sua aventura]]
+- [[#gerenciador-de-senhas][Gerenciador de Senhas]]
+
 * [[./quiz.py][Quiz]]
 Exercício bastante básico, aborda _entrada/saída_, _tratamento da entrada_ do usuário, _condicionais simples_
 #+begin_src python :tangle ./quiz.py
@@ -186,3 +193,5 @@ print(f"Thank you for playing, {name}")
 
 * Gerenciador de Senhas
 Introduzia a criação de funções, mas não funciona :/
+
+
